@@ -10,14 +10,14 @@ output: rmarkdown::html_document
 #### [https://goo.gl/forms/kESmRu8wvEQOeAQz2](https://goo.gl/forms/kESmRu8wvEQOeAQz2)
 
 ## Motivation of this survey
-#### This is the first time I come to America, this is a totally new environment for me. I need to get used to the climate, language, culture and the most important thing-the way of study. In the first a few weeks of the class, I am confused about everything and nearly break up. 
+This is the first time I come to America, this is a totally new environment for me. I need to get used to the climate, language, culture and the most important thing-the way of study. In the first a few weeks of the class, I am confused about everything and nearly break up. 
 
-#### So I pay attention to the time everyone use for study on the weekdays and in the weekend.As a result, I found that students belonging to  different school have different time schedule and even in the same school, phd students and master students also have significantly different schedule for study.
+So I pay attention to the time everyone use for study on the weekdays and in the weekend.As a result, I found that students belonging to  different school have different time schedule and even in the same school, phd students and master students also have significantly different schedule for study.
 
-#### These differences makes me lost, so I want to make a survey about this and find the relationship between the degree of students and the time they used for study. Besides that I also want to find the average level of study time for every student on weekdays and in the weekend.
+These differences makes me lost, so I want to make a survey about this and find the relationship between the degree of students and the time they used for study. Besides that I also want to find the average level of study time for every student on weekdays and in the weekend.
 
 ## Where did I get the data
-#### I use to google form to design a questionaire for the survey and send the link to my friends in UR. After that I use google sheet to collect the data.
+I use to google form to design a questionaire for the survey and send the link to my friends in UR. After that I use google sheet to collect the data.
 
 ## package description
 
@@ -36,8 +36,10 @@ timedata<-data.frame(timedata[,-1])
 ### 1.Function:trans_level
 
 #### Usage:trans_level(data,x)
-#### Description: when we initially get data, the catogory varibles may be a range varible or some other things that indicate the level.If we change these varibles into numbers, it will be more informative and we can order the data in terms of these numbers level and calculate the correlation index with the method of spearman.
-#### Example: change the range of time into numbers in column "weekday" and "weekend".
+#### Description: 
+when we initially get data, the catogory varibles may be a range varible or some other things that indicate the level.If we change these varibles into numbers, it will be more informative and we can order the data in terms of these numbers level and calculate the correlation index with the method of spearman.
+#### Example: 
+change the range of time into numbers in column "weekday" and "weekend".
 
 ```{r}
 library(timestudy)
@@ -55,13 +57,15 @@ mean_weekend<-timedata$weekend%>%
   mean()%>%
   round(2)
 ```
-#### After we change the range of time into numbers, we can calculate the average level of time used to study. As a result, the average level of time used to study on weekday is 4.94 and on weekend is 3.9
+After we change the range of time into numbers, we can calculate the average level of time used to study. As a result, the average level of time used to study on weekday is 4.94 and on weekend is 3.9
 
 ### 2.Function:scatterplot
 
 #### Usage:scatterplot(data,x_data,y_data,x_lab,y_lab,title)
-#### Description: when we get data initially, it is difficult for us to find the attributes of data diretly, so we can use the scatterplot to express the paired data in scatterplot, so that we can get the most common data and the biggest frequency of range.
-#### Example: draw two scatterplots using data we collected, one is for master students and the other for phd students.
+#### Description: 
+when we get data initially, it is difficult for us to find the attributes of data diretly, so we can use the scatterplot to express the paired data in scatterplot, so that we can get the most common data and the biggest frequency of range.
+#### Example: 
+draw two scatterplots using data we collected, one is for master students and the other for phd students.
 
 ```{r}
 library(timestudy)
@@ -86,13 +90,15 @@ cor_phd<-phd$weekday%>%
   round(2)
 ```
 
-#### After we draw the scatterplot, we use the method of spearman to calculate the correlation index between weekday and weekend. It seems that there is no significant relationship between time for study on weekday and weekend, which is different from what I think that if students use much more time on weekdays, time used on weekend will be less.
+After we draw the scatterplot, we use the method of spearman to calculate the correlation index between weekday and weekend. It seems that there is no significant relationship between time for study on weekday and weekend, which is different from what I think that if students use much more time on weekdays, time used on weekend will be less.
 
 ### 3.Function:outlier
 
 #### Usage:outlier(data,x)
-#### Description: when we get data initially, there might be some too much bigger or smaller data which would diturb our analysis, so need to find it and take it out interms of the formular:lim_up=4th quantile+IQR*1.5 and lim_low=2nd quantile-IQR*1.5
-#### Example: use this function to check if there is outlier in master students data.
+#### Description: 
+when we get data initially, there might be some too much bigger or smaller data which would diturb our analysis, so need to find it and take it out interms of the formular:lim_up=4th quantile+IQR*1.5 and lim_low=2nd quantile-IQR*1.5
+#### Example: 
+use this function to check if there is outlier in master students data.
 
 ```{r}
 library(timestudy)
@@ -102,4 +108,4 @@ kable(outliers1[1:5,],caption = "outliers on weekday of master")
 kable(outliers2[1:5,],caption = "outliers on weekend of master")
 ```
 
-#### if the amount of data is big enough, the results above would not be that bad:nearly a half of data is outlier.
+if the amount of data is big enough, the results above would not be that bad:nearly a half of data is outlier.
