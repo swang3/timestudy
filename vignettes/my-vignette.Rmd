@@ -2,11 +2,8 @@
 title: "timestudy"
 author: "Sheng Wang"
 date: "October,9th,2017"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+output: html_vignette
+
 ---
 ```{r}
 knitr::opts_chunk$set(echo = TRUE)
