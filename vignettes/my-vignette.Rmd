@@ -8,6 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
+knitr::opts_chunk$set(echo = TRUE)
 
 ##Link of the survey
 ####[https://goo.gl/forms/kESmRu8wvEQOeAQz2](https://goo.gl/forms/kESmRu8wvEQOeAQz2)

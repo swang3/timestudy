@@ -1,7 +1,7 @@
 Package: timestudy
 Type: Package
 Title: summarize and analyze data
-Version: 0.1.0
+Version: 0.1.1
 Author: Sheng Wang
 Maintainer: Sheng Wang <Sheng_Wang@urmc.rochester.edu>
 Description:
