@@ -3,21 +3,18 @@ title: "timestudy"
 author: "Sheng Wang"
 date: "October,9th,2017"
 output: rmarkdown::html_document
+
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-##Link of the survey
+## Link of the survey
 ####[https://goo.gl/forms/kESmRu8wvEQOeAQz2](https://goo.gl/forms/kESmRu8wvEQOeAQz2)
 
-##Motivation of this survey
+## Motivation of this survey
 ####This is the first time I come to America, this is a totally new environment for me. I need to get used to the climate, language, culture and the most important thing-the way of study. In the first a few weeks of the class, I am confused about everything and nearly break up. 
 
-####So I pay attention to the time everyone use for study on the weekdays and in the weekend.As a result, I found that students belonging to  different school have different time schedule and even in the same school, phd students and master students also have significantly different schedule for study.
+#### So I pay attention to the time everyone use for study on the weekdays and in the weekend.As a result, I found that students belonging to  different school have different time schedule and even in the same school, phd students and master students also have significantly different schedule for study.
 
-####These differences makes me lost, so I want to make a survey about this and find the relationship between the degree of students and the time they used for study. Besides that I also want to find the average level of study time for every student on weekdays and in the weekend.
+#### These differences makes me lost, so I want to make a survey about this and find the relationship between the degree of students and the time they used for study. Besides that I also want to find the average level of study time for every student on weekdays and in the weekend.
 
 ##Where did I get the data
 ####I use to google form to design a questionaire for the survey and send the link to my friends in UR. After that I use google sheet to collect the data.
@@ -26,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ####Note: All examples below uses the data from study time survey.
 
-```{r}
+```{r loaddata, echo=TRUE}
 #impot data directly from Google Sheet
 library(timestudy)
 timedata<-readdata(
