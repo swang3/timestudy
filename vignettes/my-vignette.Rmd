@@ -1,0 +1,108 @@
+---
+title: "timestudy"
+author: "Sheng Wang"
+date: "October,9th,2017"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+##Link of the survey
+####[https://goo.gl/forms/kESmRu8wvEQOeAQz2](https://goo.gl/forms/kESmRu8wvEQOeAQz2)
+
+##Motivation of this survey
+####This is the first time I come to America, this is a totally new environment for me. I need to get used to the climate, language, culture and the most important thing-the way of study. In the first a few weeks of the class, I am confused about everything and nearly break up. 
+
+####So I pay attention to the time everyone use for study on the weekdays and in the weekend.As a result, I found that students belonging to  different school have different time schedule and even in the same school, phd students and master students also have significantly different schedule for study.
+
+####These differences makes me lost, so I want to make a survey about this and find the relationship between the degree of students and the time they used for study. Besides that I also want to find the average level of study time for every student on weekdays and in the weekend.
+
+##Where did I get the data
+####I use to google form to design a questionaire for the survey and send the link to my friends in UR. After that I use google sheet to collect the data.
+
+##package description
+
+####Note: All examples below uses the data from study time survey.
+
+```{r}
+#impot data directly from Google Sheet
+library(timestudy)
+timedata<-readdata(
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTNO7HKCWarPheV76fbAfyxORYZDrEpPV7D9BlWERiggarGaIl9JzH7ZTzJfcprtHZudlx0gp0bC4ww/pub?output=csv")
+timedata<-data.frame(timedata[,-1])
+```
+
+##Introduction of functions
+
+###1.Function:trans_level
+
+####Usage:trans_level(data,x)
+####Description: when we initially get data, the catogory varibles may be a range varible or some other things that indicate the level.If we change these varibles into numbers, it will be more informative and we can order the data in terms of these numbers level and calculate the correlation index with the method of spearman.
+####Example: change the range of time into numbers in column "weekday" and "weekend".
+
+```{r}
+library(timestudy)
+library(dplyr)
+library(knitr)
+timedata<-trans_level(timedata,4)
+timedata<-trans_level(timedata,5)
+kable(timedata[1:5,])
+mean_weekday<-timedata$weekday%>%
+  as.numeric()%>%
+  mean()%>%
+  round(2)
+mean_weekend<-timedata$weekend%>%
+  as.numeric()%>%
+  mean()%>%
+  round(2)
+```
+####After we change the range of time into numbers, we can calculate the average level of time used to study. As a result, the average level of time used to study on weekday is 4.94 and on weekend is 3.9
+
+###2.Function:scatterplot
+
+####Usage:scatterplot(data,x_data,y_data,x_lab,y_lab,title)
+####Description: when we get data initially, it is difficult for us to find the attributes of data diretly, so we can use the scatterplot to express the paired data in scatterplot, so that we can get the most common data and the biggest frequency of range.
+####Example: draw two scatterplots using data we collected, one is for master students and the other for phd students.
+
+```{r}
+library(timestudy)
+library(tidyverse)
+library(gridExtra)
+master<-timedata%>%
+  filter(program=="master program")
+phd<-timedata%>%
+  filter(program=="phd program")
+scatter1<-scatterplot(master,master$weekday,master$weekend,"weekday","weekend","master")
+scatter2<-scatterplot(phd,phd$weekday,phd$weekend,"weekday","weekend","phd")
+grid.arrange(scatter1,scatter2,ncol=2,nrow=1,widths=c(1,1))
+master$weekday<-as.numeric(master$weekday)
+master$weekend<-as.numeric(master$weekend)
+cor_master<-master$weekday%>%
+  cor(master$weekend,method = c("spearman"))%>%
+  round(2)
+phd$weekday<-as.numeric(phd$weekday)
+phd$weekend<-as.numeric(phd$weekend)
+cor_phd<-phd$weekday%>%
+  cor(phd$weekend,method = c("spearman"))%>%
+  round(2)
+```
+
+####After we draw the scatterplot, we use the method of spearman to calculate the correlation index between weekday and weekend. It seems that there is no significant relationship between time for study on weekday and weekend, which is different from what I think that if students use much more time on weekdays, time used on weekend will be less.
+
+###3.Function:outlier
+
+####Usage:outlier(data,x)
+####Description: when we get data initially, there might be some too much bigger or smaller data which would diturb our analysis, so need to find it and take it out interms of the formular:lim_up=4th quantile+IQR*1.5 and lim_low=2nd quantile-IQR*1.5
+####Example: use this function to check if there is outlier in master students data.
+
+```{r}
+library(timestudy)
+outliers1<-outlier(master,4)
+outliers2<-outlier(master,5)
+kable(outliers1[1:5,],caption = "outliers on weekday of master")
+kable(outliers2[1:5,],caption = "outliers on weekend of master")
+```
+
+####if the amount of data is big enough, the results above would not be that bad:nearly a half of data is outlier.
