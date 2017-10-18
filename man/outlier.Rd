@@ -10,14 +10,14 @@
     lim_low=quantile[data][4]-IQR*1.5
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
-\usage{outlier(data,x)
+\usage{outlier(data,col_number)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{data we collected
 %%     ~~Describe \code{x} here~~
 }
-  \item{x}{the number of column you want to analyse
+  \item{col_number}{the number of column you want to analyse
 }
 }
 \value{if there is no outliers, it return "there is no charater",otherwise it would return a datafram which contains rows that have outliers in the xth column.

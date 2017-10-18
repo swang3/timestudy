@@ -98,7 +98,7 @@ After we draw the scatterplot, we use the method of spearman to calculate the co
 
 ### 3.Function:outlier
 
-#### Usage:outlier(data,x)
+#### Usage:outlier(data,col_number)
 #### Description: 
 when we get data initially, there might be some too much bigger or smaller data which would diturb our analysis, so need to find it and take it out interms of the formular:lim_up=4th quantile+IQR*1.5 and lim_low=2nd quantile-IQR*1.5
 #### Example: 
