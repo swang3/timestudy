@@ -3,6 +3,10 @@ title: "timestudy"
 author: "Sheng Wang"
 date: "October,9th,2017"
 output: rmarkdown::html_document
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{timestudy}
+  %\usepackage[UTF-8]{inputenc}
 
 ---
 
