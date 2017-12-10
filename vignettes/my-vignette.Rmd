@@ -108,9 +108,9 @@ use this function to check if there is outlier in master students data.
 ```{r}
 library(timestudy)
 outliers1<-outlier(master,4)
-outliers2<-outlier(master,5)
+outliers2<-outlier(phd,4)
 kable(outliers1[1:5,],caption = "outliers on weekday of master")
-kable(outliers2[1:5,],caption = "outliers on weekend of master")
+kable(outliers2[1:5,],caption = "outliers on weekday of phd")
 ```
 
 if the amount of data is big enough, the results above would not be that bad:nearly a half of data is outlier.
