@@ -114,3 +114,6 @@ kable(outliers2[1:5,],caption = "outliers on weekday of phd")
 ```
 
 if the amount of data is big enough, the results above would not be that bad:nearly a half of data is outlier.
+summary:In terms of the result of the outlier funtion, we can find the outliers in both master and phd students.
+But the results is different from what I expected, maybe the reason for that is the size of the sample is not big 
+enough.
