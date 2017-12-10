@@ -41,7 +41,8 @@ timedata<-data.frame(timedata[,-1])
 
 #### Usage:trans_level(data,x)
 #### Description: 
-when we initially get data, the catogory varibles may be a range varible or some other things that indicate the level.If we change these varibles into numbers, it will be more informative and we can order the data in terms of these numbers level and calculate the correlation index with the method of spearman.
+when we initially get data, the catogory varibles may be a range varible or some other things that indicate the level.If we change these varibles into numbers, it will be more informative and we can order the data in terms of these numbers level and calculate the correlation index with the method of spearman.Before using the method of 
+spearman to analyse the data, I make an assumption that these category varibles are continuous.
 #### Example: 
 change the range of time into numbers in column "weekday" and "weekend".
 
